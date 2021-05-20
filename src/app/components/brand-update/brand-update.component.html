@@ -1,0 +1,22 @@
+<div *ngIf="dataLoaded==true" class="content">
+    <div class="col-md-12">
+        <div class="card">
+            <div class="card-header">
+                <h5 class="title">Marka Güncelleme</h5>
+            </div>
+            <div class="card-body">
+                <form [formGroup]="brandUpdateForm">
+                    <div class="mb-3"><label for="brandName">Marka Adı</label>
+                        <div class="form-group">
+                            <input type="text" id="brandName" formControlName="brandName" class="form-control"
+                                placeholder="{{brand.brandName}}" />
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div (click)="update()" class="card-footer">
+                <button class="btn btn-fill btn-success">Güncelle</button>
+            </div>
+        </div>
+    </div>
+</div>

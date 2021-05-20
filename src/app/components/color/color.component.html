@@ -1,0 +1,23 @@
+
+<div >
+    <div class="mb-3">
+        <label for="filterText2" class="form-label">Renk Adı</label>
+        <input type="text" [(ngModel)]="filterText2" class="form-control" id="filterText2" placeholder="arama ifadesi giriniz">
+      </div>
+      <div  *ngIf="filterText2.length>2" class="alert alert-success"> 
+          {{filterText2}} aradınız
+      </div>
+    <ul *ngFor="let color of colors  | colorPipe:filterText2  " class="list-group">
+        <li (click)="setCurrentColor(color)" routerLink="/cars/color/{{color.colorId}}" 
+        [class]="getCurrentColorClass(color)">{{color.colorName}}</li>
+        <li>
+            <button
+                type="button"
+                routerLink="/colors/update/{{ color.colorId }}"
+                class="btn btn-success"
+              >
+                Güncelle
+              </button>
+        </li>
+    </ul>
+    </div>

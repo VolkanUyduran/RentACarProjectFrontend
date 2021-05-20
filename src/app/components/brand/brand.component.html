@@ -1,0 +1,22 @@
+<div *ngIf="dataLoaded==true">
+
+    <div class="mb-3">
+        <label for="filterText1" class="form-label">Marka Adı</label>
+        <input type="text" [(ngModel)]="filterText1" class="form-control" id="filterText1"
+            placeholder="arama ifadesi giriniz">
+    </div>
+    <div *ngIf="filterText1.length>2" class="alert alert-success">
+        {{filterText1}} aradınız
+
+    </div>
+    <ul *ngFor="let brand of brands | brandPipe:filterText1 " class="list-group">
+        <li (click)="setCurrentBrand(brand)" routerLink="/cars/brand/{{brand.brandId}}" class="list-group-item">
+            {{brand.brandName}}</li>
+        <li>
+            <button type="button" routerLink="/brands/update/{{ brand.brandId }}" class="btn btn-dark">
+                Güncelle
+            </button>
+        </li>
+
+    </ul>
+</div>

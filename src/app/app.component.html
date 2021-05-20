@@ -1,0 +1,16 @@
+<div class="container">
+    <app-navibar></app-navibar>
+    <div class="row">
+        <div class="col-md-3">
+            <button routerLink="/colors/add" class="btn btn-primary">Renk ekle</button>
+            <app-color></app-color><br>
+            <button routerLink="/brands/add" class="btn btn-primary">Marka ekle</button>
+            <app-brand></app-brand>
+        </div>
+        <div class="col-md-9">
+
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+
+</div>

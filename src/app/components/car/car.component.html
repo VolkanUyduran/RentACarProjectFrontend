@@ -1,0 +1,88 @@
+<button
+                type="button"
+                routerLink="/cars/add"
+                class="btn btn-primary"
+              >
+                Yeni Araç Ekle
+              </button>
+<div *ngIf="dataLoaded==true">
+  <div class="row col-md-12 mb-3">
+    <div class="col-md-4">
+      <select [(ngModel)]="brandId" class="form-select">
+        <option *ngFor="let brand of brands" [value]="brand.brandId">
+          {{ brand.brandName }}
+        </option>
+      </select>
+    </div>
+
+    <div class="col-md-4">
+      <select [(ngModel)]="colorId" class="form-select">
+        <option *ngFor="let color of colors" [value]="color.colorId">
+          {{ color.colorName }}
+        </option>
+      </select>
+    </div>
+
+    <button
+      *ngIf="brandId && colorId"
+      routerLink="/cars/brand/{{ brandId }}/color/{{ colorId }}"
+      class="btn btn-success"
+    >
+      Filtrele
+    </button>
+  </div>
+ 
+
+
+  <div class="mb-3">
+    <label for="filterText" class="form-label">Araç Adı</label>
+    <input type="text" [(ngModel)]="filterText" class="form-control" id="filterText" placeholder="arama ifadesi giriniz">
+  </div>
+  <div  *ngIf="filterText.length>2" class="alert alert-success"> 
+      {{filterText}} aradınız
+
+  </div>
+
+
+    <div class="row row-cols-1 row-cols-md-3 g-2">
+        <div class="col"  *ngFor="let car of cars | carPipe:filterText">
+          <div
+            class="card"
+            style="width: 18rem"
+  
+          >
+            <img
+              [src]="url + defaultImage"
+              class="card-img-top"
+              alt="..."
+            />
+
+            <div class="card-body">
+              <h5 class="card-title">{{ car.carName }}</h5>
+              <h5 class="card-text">{{ car.description }}</h5>
+              <p class="card-text">Marka : {{ car.brandName }}</p>
+              <p class="card-text">Günlük Fiyat : {{ car.dailyPrice }}</p>
+              <p class="card-text">Renk : {{ car.colorName }}</p>
+              <button
+                type="button"
+                routerLink="/cars/details/{{ car.id }}"
+                class="btn btn-primary"
+              >
+                Detay
+              </button>
+              <button
+                type="button"
+                routerLink="/cars/update/{{ car.id }}"
+                class="btn btn-success"
+              >
+                Güncelle
+              </button>
+            </div>
+          </div>
+        </div>
+  
+        
+      </div>
+  
+    
+</div>
